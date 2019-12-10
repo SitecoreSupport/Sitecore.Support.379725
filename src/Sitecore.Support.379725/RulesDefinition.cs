@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 
-namespace Sitecore.Support.Rules.RulesDefinition
+namespace Sitecore.Support.Rules
 {
     public class RulesDefinition : Sitecore.Rules.RulesDefinition
     {

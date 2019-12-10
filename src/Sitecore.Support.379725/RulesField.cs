@@ -10,7 +10,7 @@ using Sitecore.Diagnostics;
 using Sitecore.Links;
 using Sitecore.Rules;
 
-namespace Sitecore.Support.Data.Fields.RulesField
+namespace Sitecore.Support.Data.Fields
 {
     public class RulesField : Sitecore.Data.Fields.RulesField
     {
@@ -50,7 +50,7 @@ namespace Sitecore.Support.Data.Fields.RulesField
             if (RulesDefinitionDocument != null)
             {
                 Database database = base.InnerField.Database;
-                RulesDefinition rulesDefinition = new RulesDefinition(RulesDefinitionDocument.ToString());
+                Sitecore.Support.Rules.RulesDefinition rulesDefinition = new Sitecore.Support.Rules.RulesDefinition(RulesDefinitionDocument.ToString());
                 List<ID> list = new List<ID>();
                 list.AddRange(rulesDefinition.GetReferencedActions());
                 list.AddRange(rulesDefinition.GetReferencedConditions());
