@@ -26,15 +26,33 @@ namespace Sitecore.Support.Rules.RulesDefinition
                 }
 
                 ID parsedId;
-                if (!ID.TryParse(attribute.Value, out parsedId))
+                List<string> innerIds = new List<string>();
+                if (attribute.Value.Contains("|"))
                 {
-                    continue;
+                    var ids = attribute.Value.Split('|');
+
+                    foreach (var id in ids)
+                    {
+                        innerIds.Add(id);
+                    }
+                }
+                else
+                {
+                    innerIds.Add(attribute.Value);
+                }
+                foreach (var id in innerIds)
+                {
+                    if (!ID.TryParse(id, out parsedId))
+                    {
+                        continue;
+                    }
+
+                    if (!referencedItems.Contains(parsedId))
+                    {
+                        referencedItems.Add(parsedId);
+                    }
                 }
 
-                if (!referencedItems.Contains(parsedId))
-                {
-                    referencedItems.Add(parsedId);
-                }
             }
 
             return referencedItems;
